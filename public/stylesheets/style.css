@@ -1,1 +1,140 @@
-@import url(http://fonts.googleapis.com/css?family=Titillium+Web:400,300,600,700,200&subset=latin,latin-ext);body{margin:0;padding:0;font-size:12px;font-family:Helvetica Neue,Helvetica,Arial;color:#000}a{text-decoration:none;color:#000}a:hover{text-decoration:underline}.full-row{width:100%}.site-row{width:1200px;margin:0 auto}.no-bullet{list-style:none;margin:0;padding:0}.main-nav{width:100%;display:inline-block}.main-nav ul{float:right}.main-nav ul li{display:inline-block;margin-left:20px}.main-nav ul a{font-family:'Titillium Web', sans-serif;font-size:25px}.footer{height:65px;background:#f16523;display:inline-block}.footer-nav ul li{display:inline-block;line-height:25px;height:45px;margin-top:20px;margin-right:20px}.footer-nav a{font-size:25px;color:#fff}.liberty-square{width:100%;height:750px;float:left;background:url(../images/plac.png) top center no-repeat}.kosciuszko{width:1200px;height:560px;margin:190px auto 0;background:url(../images/kosciuszko.png) top left no-repeat}
+
+@import url(http://fonts.googleapis.com/css?family=Titillium+Web:400,300,600,700,200&subset=latin,latin-ext);
+body{margin:0;padding:0;font-size:12px;font-family:Helvetica Neue,Helvetica,Arial;color:#000}
+a{text-decoration:none;color:#000}
+a:hover{text-decoration:underline}
+.full-row{width:100%}
+.site-row{width:1200px;margin:0 auto}
+.no-bullet{list-style:none;margin:0;padding:0}
+.main-nav{width:100%;display:inline-block}
+.main-nav ul{float:right}
+.main-nav ul li{display:inline-block;margin-left:20px}
+.main-nav ul a{font-family:'Titillium Web', sans-serif;font-size:25px}
+.footer{height:65px;background:#f16523;display:inline-block}
+.footer-nav ul li{display:inline-block;line-height:25px;height:45px;margin-top:20px;margin-right:20px}
+.footer-nav a{font-size:25px;color:#fff}
+.liberty-square{width:100%;height:750px;float:left;background:url(../images/plac.png) top center no-repeat}
+.kosciuszko{width:1200px;height:560px;margin:190px auto 0;background:url(../images/kosciuszko.png) top left no-repeat}
+
+
+* {
+	padding: 0;
+	margin: 0;
+}
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+header {
+	border-bottom: black solid 1px;
+	height: 50px;
+	width: 100%;
+}
+
+#title {
+	padding: 10px;
+	letter-spacing: .3em;
+	float: left;
+	margin-left: 10px;
+}
+
+#search {
+	width: 350px;
+	font-size: 1.6em;
+	font-weight: bold;
+	padding: 10px;
+	float: right;
+}
+
+#search input[type=text]{
+	width: 300px;
+	text-indent: 5px;
+	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+	font-size: 1em;
+	border-radius: 3px;
+	border: 1px solid;
+	letter-spacing: .025em;
+	float: left;
+}
+
+#search input[type=submit]{
+	width: 40px;
+	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+	font-weight: bold;
+	font-size: 1em;
+	border-radius: 3px;
+	float: right;
+}
+
+#content {
+	padding: 10px;
+	margin: 0 auto;
+	margin-left: 10px;
+}
+
+#content ol{
+	-webkit-padding-start: 2em;
+}
+
+#scrollable-dropdown-menu {
+	width: 300px;
+	display: inline;
+}
+
+footer {
+	margin: 0 auto;
+	width: 100%;
+	display: block;
+	position: absolute;
+	bottom: 0;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	border-top: black solid 1px;
+}
+
+#footer-container {
+}
+
+a.search-result {
+	color: black;
+	text-decoration: none;
+}
+
+footer div {
+	display: inline;
+	padding: 20px;
+	text-align: center;
+}
+
+
+
+.typeahead,
+.tt-query,
+.tt-hint,
+.tt-dropdown-menu {
+  width: 300px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  -webkit-border-radius: 8px;
+     -moz-border-radius: 8px;
+          border-radius: 8px;
+}
+
+.typeahead:focus {
+  border: 2px solid #0052a4;
+}
+
+.tt-suggestion {
+  font-size: 1em;
+  font-weight: normal;
+  line-height: 24px;
+}
+
+.tt-suggestion.tt-cursor {
+  color: #fff;
+  background-color: #0052a4;
+}

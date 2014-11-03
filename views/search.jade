@@ -3,18 +3,27 @@ extends layout
 block content
   h1 Wyszukiwanie Pozycji Budżetowych:
   br
-  p Wyniki znalezione dla hasła '#{query}' (#{data.length})
+  p Wyniki znalezione dla hasła '#{query}' (#{total})
   br
   if (data.length > 0)
-    ol
-      each val in data
-        if (val["type"] == "Nazwa zadania")
-          li #{val["Zadanie - nazwa"]} - #{val['Kwota [PLN]']} PLN
+    ol(start = start)
+      each row in data
+        if (row.type == "Nazwa zadania")
+          li: a(href="/task/#{row.id}" class = 'search-result') #{row.text} - #{row.value} PLN
+          a(href="/task/#{row.id}" class = 'search-result') #{row.type}
+          br
+          br
         else
-          li #{val["id"]} - #{val['value']} PLN
-        | #{val["type"]}
-        br
-        br
+          li: a(href="/task/#{row.id}" class = 'search-result') #{row.text} - #{row.value} PLN
+          a(href="/task/#{row.id}" class = 'search-result') #{row.type}
+          br
+          br
+    br
+    if (next)
+      a(href="/search/pages/#{page - 1}?query=" + query) Poprzedni
+    |   
+    if (prev)
+      a(href="/search/pages/#{page + 1}?query=" + query) Następny
   else
     p Nie znaleziono wyników
   br
