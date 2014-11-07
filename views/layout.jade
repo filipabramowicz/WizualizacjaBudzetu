@@ -34,21 +34,41 @@ html
         })
       });
   body
-    header
-      #title
-        h1 Budżet Miasta Łodzi
-      #search
-        form(method="post" enctype="multipart/form-data" action="/search")
-          #scrollable-dropdown-menu
-            input(class='typeahead' type='text' value='search' name='query' onclick="if (this.defaultValue==this.value) this.value=''")
-          input(type='submit' value='ok')
+    div.icon-nav
+      ul.no-bullet
+        li: a(href=""): img(alt="" src="../images/wbm.png")
+        li: a(href="http://facebook.com"): img(alt="" src="../images/facebook.png")
+        li: a(href="http://twitter.com"): img(alt="" src="../images/twitter.png")
+    div.main-nav
+      ul.no-bullet
+        li: a(href='') GŁÓWNA
+        li: a(href='') BUDŻET MIASTA ŁODZI
+        li: a(href='') O PROJEKCIE
+//    header
+//      #title
+//        h1 Budżet Miasta Łodzi
+//      #search
+//        form(method="post" enctype="multipart/form-data" action="/search")
+//          #scrollable-dropdown-menu
+//            input(class='typeahead' type='text' value='search' name='query' onclick="if (this.defaultValue==this.value) this.value=''")
+         //input(type='submit' value='ok')
+
     #content
       block content
     footer
-      #footer-container
-        div()
-          div(): a(href='regulamin') Regulamin
-          div(): a(href='autorzy') Autorzy
-          div(): a(href='kdp_lodz') KdP Łódź
-          div(): a(href='faq') FAQ
-          div(): a(href='Kontakt') Kontakt
+      div.footer-nav
+        ul.no-bullet
+          li: a(href='regulamin') Polityka prywatności
+          li: a(href='autorzy') Autorzy
+          li: a(href='kdp_lodz') KdP Łódź
+          li: a(href='faq') FAQ
+          li: a(href='Kontakt') Kontakt
+      div.footer-partners
+        div.partners-slogan
+          p Partnerzy i Przyjaciele
+        div.partner-badges
+          a(href="http://epf.org.pl/kodujdlapolski/" target="_blank"): img(alt="" src="../images/kdp.svg")
+          a(href="http://epf.org.pl/" target="_blank"): img(alt="" src="../images/fep.svg")#fepanstwo
+          a(href="http://chomonto.pl/" target="_blank"): img(alt="" src="../images/chomonto.png")#chomonto
+          a(href="http://inspro.org.pl/" target="_blank"): img(alt="" src="../images/inspro.png")#inspro
+          a(href="http://prowly.com/" target="_blank"): img(alt="" src="../images/prowly.png")#prowly

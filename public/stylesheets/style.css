@@ -1,26 +1,13 @@
 
 @import url(http://fonts.googleapis.com/css?family=Titillium+Web:400,300,600,700,200&subset=latin,latin-ext);
-body{margin:0;padding:0;font-size:12px;font-family:Helvetica Neue,Helvetica,Arial;color:#000}
 a{text-decoration:none;color:#000}
 a:hover{text-decoration:underline}
-.full-row{width:100%}
-.site-row{width:1200px;margin:0 auto}
-.no-bullet{list-style:none;margin:0;padding:0}
-.main-nav{width:100%;display:inline-block}
-.main-nav ul{float:right}
-.main-nav ul li{display:inline-block;margin-left:20px}
-.main-nav ul a{font-family:'Titillium Web', sans-serif;font-size:25px}
-.footer{height:65px;background:#f16523;display:inline-block}
-.footer-nav ul li{display:inline-block;line-height:25px;height:45px;margin-top:20px;margin-right:20px}
-.footer-nav a{font-size:25px;color:#fff}
-.liberty-square{width:100%;height:750px;float:left;background:url(../images/plac.png) top center no-repeat}
-.kosciuszko{width:1200px;height:560px;margin:190px auto 0;background:url(../images/kosciuszko.png) top left no-repeat}
-
 
 * {
 	padding: 0;
 	margin: 0;
 }
+
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
@@ -29,18 +16,227 @@ a {
   color: #00B7FF;
 }
 
-header {
-	border-bottom: black solid 1px;
-	height: 50px;
+/**
+ * Main site's content section 
+ * 
+ * 1) Contains liberty square image
+ *    - centered
+ * 2) Contains Kosciuszko's image
+ *    - centered
+ */
+
+#content {
+	position: absolute;
+	bottom: 20%;
+	height: 80%;
 	width: 100%;
+	overflow: hidden;
+	z-index: auto;
 }
 
-#title {
-	padding: 10px;
-	letter-spacing: .3em;
-	float: left;
-	margin-left: 10px;
+
+#liberty-square{
+	/*width: 1400px;
+	height: 750px;*/
+	width: 100%;
+	height: 100%;
+	max-width: 100%;
+	margin: auto;
+	position: absolute;
+	bottom: 0px;
+	left: 0;
+	right: 0;
+	background: url(../images/plac.png) bottom center no-repeat;
+	overflow: hidden;
 }
+
+#kosciuszko{
+	width: 1200px;
+	height: 560px;
+	position: absolute;
+	bottom: 0px;
+	left: 0;
+	right: 0;
+	margin: auto;
+	background:url(../images/kosciuszko.png) bottom center no-repeat;
+}
+
+/**
+ * The site's main navigation bar
+ *
+ * 1) Contains navigation bar
+ *    - right justified
+ */
+.main-nav {
+	height: 5%;
+	width: 600px;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	z-index: 1;
+	padding-top: 10px;
+}
+
+.main-nav ul {
+	margin-right: 15px;
+}
+.main-nav ul li {
+	display:inline-block;
+	margin-left: 30px;
+}
+.main-nav ul a {
+	font-family:'Titillium Web', sans-serif;
+	font-size: 25px
+}
+
+
+/**
+ * The site's left navigation bar
+ *
+ * 1) Contains WBM logo
+ * 2) Contains facebook icon
+ *    - link to facebook
+ * 3) Contains twitter icon
+ *    - link to twitter
+ */
+ .icon-nav {
+	width: 50px;
+	height: 20%;
+	position: absolute;
+	top: 0px;
+	left: 10px;
+	display: table;
+	z-index: 1;
+	padding: 10px;
+ }
+
+.icon-nav ul li {
+	float: left;
+}
+
+.icon-nav ul li a img {
+	width: 100%;
+	height: 100%;
+	margin-top: 5px;
+	margin-bottom: 5px;	
+}
+
+/**
+ * The site's footer
+ *
+ * 1) Contains footer navigation bar
+ *    - centered with links to subpages
+ * 2) Contains partners section
+ *    - centered slogan
+ *    - centered badges section that presents partners' badges
+ */
+footer {
+	/*margin: auto;*/
+	width: 100%;
+	height: 20%;
+	display: block;
+	position: fixed;
+	bottom: 0;
+}
+
+/**
+ * Footer centered navigation bar
+ */
+.footer-nav {
+	display: block;
+	height: 30%;
+	background: #f16523;
+}
+
+.footer-nav ul {
+	position: relative;
+	top: 30%;
+	text-align: center;
+}
+
+.footer-nav ul li {
+	display: inline-block;
+	line-height: 25px;
+	margin-right: 15px;
+	margin-left: 15px;
+}
+
+.footer-nav a{
+	font-size:25px;
+	font-family:'Titillium Web', sans-serif;
+	color:#fff
+}
+
+/**
+ * Footer partners section
+ */
+.footer-partners {
+	display: block;
+	height: 70%;
+	background: #fff;
+}
+
+.partners-slogan {
+	font-family:'Titillium Web', sans-serif;
+	font-size:18px;
+	text-align: center;
+	font-style: italic;
+	position: relative;
+	top: 5%;
+}
+
+.partner-badges {
+	text-align: center;	
+	position: relative;
+	top: 20%;
+}
+.partner-badges a img {
+	height: 50px;
+	width: auto;
+	/*display: inline-block;*/
+	margin-left: 30px;
+	margin-right: 30px;
+	position: relative;
+	top: -30px;
+}
+
+#fepanstwo {
+	height: 41px;
+	width: auto;
+	position: relative;
+	top: -40px;
+}
+
+#chomonto {
+	height: 70px;
+	width: auto;
+	margin-left: 20px;
+	margin-right: 20px;
+	position: relative;
+	top: -25px;
+}
+
+#inspro {
+	position: relative;
+	top: -32px;
+}
+
+#prowly {
+	height: 80px;
+	width: auto;
+	position: relative;
+	top: -15px;
+}
+
+a.search-result {
+	color: black;
+	text-decoration: none;
+}
+
+.no-bullet{
+	list-style: none;
+}
+
 
 #search {
 	width: 350px;
@@ -70,11 +266,6 @@ header {
 	float: right;
 }
 
-#content {
-	padding: 10px;
-	margin: 0 auto;
-	margin-left: 10px;
-}
 
 #content ol{
 	-webkit-padding-start: 2em;
@@ -85,32 +276,8 @@ header {
 	display: inline;
 }
 
-footer {
-	margin: 0 auto;
-	width: 100%;
-	display: block;
-	position: absolute;
-	bottom: 0;
-	padding-top: 20px;
-	padding-bottom: 20px;
-	border-top: black solid 1px;
-}
 
-#footer-container {
-}
-
-a.search-result {
-	color: black;
-	text-decoration: none;
-}
-
-footer div {
-	display: inline;
-	padding: 20px;
-	text-align: center;
-}
-
-
+/* Suggestion engine */
 
 .typeahead,
 .tt-query,
