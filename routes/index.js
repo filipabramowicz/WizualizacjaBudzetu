@@ -178,6 +178,30 @@ router.get('/kontakt', function(req, res){
 	res.render('kontakt', { title: 'Kontakt'});
 });
 
+router.get('/budget', function(req, res){
+  res.render('budget', { title: 'Budżet Miasta Łodzi'});
+});
+
+router.get('/chart-data', function(req, res){
+  MongoClient.connect(config.MONGO, function(error, db) {
+    if (error) {
+      res.json({value:""});
+      return; 
+    }
+    chart = db.collection("chart");
+    chart.findOne(function(error, data){
+      if (error) {
+        res.json({value:""});
+        return;
+      }
+      delete data._id;
+      res.json(data);
+    });
+  });  
+});
+
+
+
 ///obsluga wykresow
 /*
 router.get('/', function(req, res) {

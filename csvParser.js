@@ -13,6 +13,11 @@ var parse = function(filepath) {
   };
   var csvConverter = new Converter(param);
   var level1_hash = {};
+  
+  var giant_hash = {};
+  var level1_array = [];
+  var level2_array = [];
+  var level3_array = [];
 
   fileStream.pipe(csvConverter);
   
@@ -70,7 +75,56 @@ var parse = function(filepath) {
           }
           process.stderr.write("done\n");
           callback(null, 4); 
-        },     
+        },
+        function(callback){
+          process.stderr.write("Creating NEW 1st level of structure..........");
+          createNewStructureLevel1(jsonObj, function(result_array){
+            level1_array = result_array;
+            process.stderr.write("done\n");
+            callback(null, 5);            
+          });
+        },
+        function(callback) {
+          process.stderr.write("Creating NEW 2nd and NEW 3rd level of structure..........");
+          giant_hash["name"] = "Budżet Miasta Łodzi";
+          giant_hash["children"] = [];
+          level1_array.forEach(function(main_key) {
+            if (main_key != "_id" ) {
+              createNewStructureLevel2(jsonObj, main_key, function(result_array){
+                var item2 = {};
+                var result3_array = [];
+                level2_array = result_array;
+                level2_array.forEach(function(additional_key){
+                  createNewStructureLevel3(jsonObj, main_key, additional_key, function(result_array){
+                    var item3 = {};
+                    var result4_array = [];
+                    level3_array =  result_array;
+                    level3_array.forEach(function(last_key){
+                      var item4 = {};
+                      createNewStructureLevel4(jsonObj, main_key, additional_key, last_key, function(result_array){
+                        item4["name"] = last_key;
+                        item4["children"] = result_array;
+                        result4_array.push(item4);
+                      });
+                    });
+                    item3["name"] = additional_key;
+                    item3["children"] = result4_array;
+                    result3_array.push(item3);
+                  });
+                });
+                item2["name"] = main_key;
+                item2["children"] = result3_array;
+                giant_hash["children"].push(item2);
+              });
+            }
+          });
+          console.log(JSON.stringify(giant_hash));
+          collection = db.collection("chart");
+          collection.insert(giant_hash, function(err, result) {
+            process.stderr.write("done\n");
+            callback(null, 6);           
+          });   
+        },
         function(callback) {
           process.stderr.write("Indexing text fields in the main collection of DB...");
           collection = db.collection("main");
@@ -80,7 +134,7 @@ var parse = function(filepath) {
             "search_id": "text"
           }, function(){
             process.stderr.write("done\n");
-            callback(null, 5);
+            callback(null, 7);
           });
         }  
       ], function(error, results) {
@@ -137,11 +191,66 @@ var createMainStructure = function(jsonObj, callback) {
       }  
     }
   }
-
   for (var key in temporary_array) {
     result_array.push(temporary_array[key]);
   }
   //console.log(result_array);
+  callback(result_array);
+}
+
+var createNewStructureLevel1 = function(jsonObj, callback) {
+  var result_array = [];
+  for (var element in jsonObj) {
+    key = jsonObj[element]['Wydział'];
+    if (result_array.indexOf(key) == -1) {
+      result_array.push(key);
+    }
+  }
+  callback(result_array);
+}
+
+var createNewStructureLevel2 = function(jsonObj, compare_key1, callback) {
+  var result_array = [];
+  for (var element in jsonObj) {
+    if (jsonObj[element]['Wydział'] == compare_key1){
+      key = jsonObj[element]['Dział - nazwa'];
+      if (result_array.indexOf(key) == -1) {
+        result_array.push(key);
+      }
+    }
+  }
+  callback(result_array);
+}
+
+var createNewStructureLevel3 = function(jsonObj, compare_key1, compare_key2, callback) {
+  var result_array = [];
+  for (var element in jsonObj) {
+    if (jsonObj[element]['Wydział'] == compare_key1){
+      if (jsonObj[element]['Dział - nazwa'] == compare_key2){
+        key = jsonObj[element]['Rozdział - nazwa']; 
+        if (result_array.indexOf(key) == -1) {
+          result_array.push(key);
+        }
+      }
+    }
+  }
+  callback(result_array);
+}
+
+var createNewStructureLevel4 = function(jsonObj, compare_key1, compare_key2, compare_key3, callback) {
+  var result_array = [];
+  var item = {};
+  for (var element in jsonObj) {
+    if (jsonObj[element]['Wydział'] == compare_key1){
+      if (jsonObj[element]['Dział - nazwa'] == compare_key2){
+        if (jsonObj[element]['Rozdział - nazwa'] == compare_key3){
+          item["name"] = jsonObj[element]['Zadanie - nazwa']; 
+          item["size"] = parseInt((jsonObj[element]['Kwota [PLN]']).replace(/\s+/g,''));
+          result_array.push(item);
+        }
+      }
+    }
+  }
   callback(result_array);
 }
 
